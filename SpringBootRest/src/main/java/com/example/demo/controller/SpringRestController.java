@@ -50,10 +50,7 @@ public class SpringRestController {
 		  return custServ.getCustomer(Integer.parseInt(cid));
 		  	  }
 	  
-	 
-	 /* 
-	 * //@PostMapping(path= "/customer",consumes="application/json")
-	 */
+
 	  
 	 @PostMapping("/customer") 
 	 @CrossOrigin
