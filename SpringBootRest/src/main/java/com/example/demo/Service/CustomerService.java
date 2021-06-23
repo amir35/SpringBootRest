@@ -29,6 +29,7 @@ public class CustomerService {
 			searchedCustomer.setCid(cid);
 			searchedCustomer.setCname("Name Not found");
 			searchedCustomer.setCjob("Job Title not found");
+			searchedCustomer.setGender("Not defined");
 
 		}
 		return searchedCustomer;

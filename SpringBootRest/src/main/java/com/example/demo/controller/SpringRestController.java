@@ -39,6 +39,7 @@ public class SpringRestController {
 	
 	
 	  @GetMapping("/customer/{cid}") 
+	  @CrossOrigin
 	  public CustomerEntity getCustomer(@PathVariable String cid) { 
 		  
 
@@ -63,6 +64,7 @@ public class SpringRestController {
 	  
 	 
 	  @PutMapping("/customer") 
+	  @CrossOrigin
 	  public String updateCustomer(@RequestBody CustomerEntity cust) 
 	  { 
 		  return custServ.updateCustomer(cust); 

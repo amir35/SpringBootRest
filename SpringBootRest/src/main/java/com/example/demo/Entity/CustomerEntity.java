@@ -22,17 +22,19 @@ public class CustomerEntity {
 	@Column(name = "cust_job")
 	private String cjob;
 	
+	private String gender;
 	
 	
 	public CustomerEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CustomerEntity(int cid, String cname, String cjob) {
+	public CustomerEntity(int cid, String cname, String cjob, String gender) {
 		super();
 		this.cid = cid;
 		this.cname = cname;
 		this.cjob = cjob;
+		this.gender = gender;
 	}
 	public int getCid() {
 		return cid;
@@ -51,6 +53,14 @@ public class CustomerEntity {
 	}
 	public void setCjob(String cjob) {
 		this.cjob = cjob;
+	}
+	
+	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	@Override
 	public String toString() {
