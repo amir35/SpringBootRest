@@ -72,7 +72,8 @@ public class SpringRestController {
 	 
 	  
 	  @DeleteMapping("/customer/{cid}") 
+	  @CrossOrigin
 	  public String deleteCustomer(@PathVariable String cid) 
 	  { 
-		  return this.custServ.deleteCustomer(Integer.parseInt(cid)); }
+		  return custServ.deleteCustomer(Integer.parseInt(cid)); }
 	 }
