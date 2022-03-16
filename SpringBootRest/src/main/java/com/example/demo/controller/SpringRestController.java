@@ -27,7 +27,7 @@ public class SpringRestController {
 	@GetMapping("/home")
 	public String getMessage()
 	{
-		return "Welcome to Spring Boot Rest";
+		return "Welcome to Spring Boot Rest....";
 	}
 	
 	@GetMapping("/customer")
