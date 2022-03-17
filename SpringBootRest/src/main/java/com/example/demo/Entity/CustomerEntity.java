@@ -24,17 +24,21 @@ public class CustomerEntity {
 	
 	private String gender;
 	
+	@Column(name = "cust_aadhar")
+	private String custaadhar;
+	
 	
 	public CustomerEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CustomerEntity(int cid, String cname, String cjob, String gender) {
+	public CustomerEntity(int cid, String cname, String cjob, String gender, String cust_aadhar) {
 		super();
 		this.cid = cid;
 		this.cname = cname;
 		this.cjob = cjob;
 		this.gender = gender;
+		this.custaadhar = cust_aadhar;
 	}
 	public int getCid() {
 		return cid;
@@ -62,10 +66,19 @@ public class CustomerEntity {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	public String getCust_aadhar() {
+		return custaadhar;
+	}
+	public void setCust_aadhar(String cust_aadhar) {
+		this.custaadhar = cust_aadhar;
+	}
 	@Override
 	public String toString() {
-		return "CustomerEntity [cid=" + cid + ", cname=" + cname + ", cjob=" + cjob + "]";
+		return "CustomerEntity [cid=" + cid + ", cname=" + cname + ", cjob=" + cjob + ", gender=" + gender
+				+ ", cust_aadhar=" + custaadhar + "]";
 	}
+	
+	
 	
 	
 }
