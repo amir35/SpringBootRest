@@ -7,4 +7,10 @@ import com.example.demo.Entity.CustomerEntity;
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Integer>{
 
 	public CustomerEntity findById(int id);
+	
+	public CustomerEntity findByCustaadhar(String cust_aadhaar);
+	
+	
+	
+
 }
