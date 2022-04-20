@@ -37,7 +37,7 @@ public class SpringRestController {
 
 	@GetMapping("/customer")
 	@CrossOrigin
-	public Iterable<CustomerEntity> getCustomer() {
+	public List<CustomerEntity> getCustomer() {
 		return custServ.getAllCustomer();
 	}
 
