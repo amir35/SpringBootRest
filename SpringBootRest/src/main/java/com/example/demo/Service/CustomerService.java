@@ -3,11 +3,16 @@ package com.example.demo.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DAO.CustomerRepository;
 import com.example.demo.Entity.CustomerEntity;
+import com.example.demo.exception.CustomerAlreadyExistsException;
+import com.example.demo.exception.NoSuchCustomerExistsException;
 
 @Service
 public class CustomerService {
@@ -17,7 +22,7 @@ public class CustomerService {
 
 	public List<CustomerEntity> getAllCustomer() {
 
-		return custRepo.findAll();
+		return custRepo.findAll(Sort.by(Sort.Direction.ASC,"cid"));
 	}
 
 	public CustomerEntity getCustomer(int cid) {
@@ -35,32 +40,38 @@ public class CustomerService {
 		return searchedCustomer;
 	}
 
+	// Method to add new customer details to database.Throws
+	// CustomerAlreadyExistsException when customer detail
+	// already exist
+	//@Transactional
 	public CustomerEntity postCustomer(CustomerEntity cust) {
-		custRepo.save(cust);
+		
+		CustomerEntity existingCustomer = custRepo.findByCustaadhar(cust.getCust_aadhar());
+		
+		if (existingCustomer == null) {
+			custRepo.save(cust);
+            return cust;
+        }
+        else
+            throw new CustomerAlreadyExistsException(
+                "Customer already exixts!!");
+    }
+		
+		
 
-		return cust;
-	}
+		//return cust;
 
 	public String updateCustomer(CustomerEntity cust) {
-
-		CustomerEntity searchedCust = new CustomerEntity();
-		int flag = 0;
-		if (custRepo.existsById(cust.getCid())) {
-			searchedCust = custRepo.findById(cust.getCid());
-			System.out.println(searchedCust);
-			System.out.println(cust.getCname());
-
+		
+		if(custRepo.existsById(cust.getCid()))
+		{
 			custRepo.save(cust);
-
-			flag = 1;
+			return "User updated";
 		}
-
-		if (flag == 0) {
-			custRepo.save(cust);
-			return "User Not Found. New User Added";
+		else {
+			String str = "NoCustomer Exists with given Customer id " + cust.getCid();
+			throw new NoSuchCustomerExistsException(str);
 		}
-
-		return "User Information Updated";
 	}
 
 	public String deleteCustomer(int cid) {
