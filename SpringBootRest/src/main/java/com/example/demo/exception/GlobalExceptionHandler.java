@@ -13,7 +13,7 @@ public class GlobalExceptionHandler {
 
 	
 	  @ExceptionHandler(value = NoSuchCustomerExistsException.class)
-	  @ResponseStatus(HttpStatus.BAD_REQUEST) 
+	  @ResponseStatus(HttpStatus.NOT_FOUND) 
 	  public @ResponseBody ErrorResponse handleException(NoSuchCustomerExistsException ex) 
 	  { 
 	  	return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage()); 

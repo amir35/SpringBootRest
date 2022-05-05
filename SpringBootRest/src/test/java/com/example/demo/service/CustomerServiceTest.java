@@ -35,7 +35,8 @@ public class CustomerServiceTest {
 		when(custRepo.findAll()).thenReturn(Stream.of(new CustomerEntity(1122,"Amir","Engineer","Male","A234jdhjd"),
 				new CustomerEntity(1123,"Adil","software Engineer","Male","B234dedhjd")).collect(Collectors.toList()));
 		
-		assertEquals(2, custService.getAllCustomer().size());
+		String sortBy = "cname";
+		assertEquals(2, custService.getAllCustomer(sortBy ).size());
 	}
 
 }
