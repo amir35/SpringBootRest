@@ -1,9 +1,6 @@
 package com.example.demo.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -20,9 +17,13 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepository custRepo;
 
-	public List<CustomerEntity> getAllCustomer() {
+	public List<CustomerEntity> getAllCustomer(String sortBy) {
+		
+		//Sort sort = new Sort(sortBy)
+		
+		return custRepo.findAll(Sort.by(sortBy).ascending());
 
-		return custRepo.findAll(Sort.by(Sort.Direction.ASC,"cid"));
+		//return custRepo.findAll(Sort.by(Sort.Direction.ASC,"cid"));
 	}
 
 	public CustomerEntity getCustomer(int cid) {
@@ -44,32 +45,33 @@ public class CustomerService {
 	// CustomerAlreadyExistsException when customer detail
 	// already exist
 	//@Transactional
-	public CustomerEntity postCustomer(CustomerEntity cust) {
+	public String postCustomer(CustomerEntity cust) throws CustomerAlreadyExistsException  {
+		
+		//CustomerEntity existingCustomer = custRepo.findByCustaadharAndCname(cust.getCust_aadhar(), cust.getCname());
 		
 		CustomerEntity existingCustomer = custRepo.findByCustaadhar(cust.getCust_aadhar());
 		
+		
 		if (existingCustomer == null) {
 			custRepo.save(cust);
-            return cust;
+            return "Hello " + cust.getCname() + ", You are added. Your Customer Id is " + cust.getCid();
         }
         else
-            throw new CustomerAlreadyExistsException(
-                "Customer already exixts!!");
+           // throw new CustomerAlreadyExistsException("Customer already exixts!!");
+        	return "Not found";
     }
 		
-		
-
-		//return cust;
 
 	public String updateCustomer(CustomerEntity cust) {
 		
 		if(custRepo.existsById(cust.getCid()))
 		{
+			System.out.println("User exist");
 			custRepo.save(cust);
 			return "User updated";
 		}
 		else {
-			String str = "NoCustomer Exists with given Customer id " + cust.getCid();
+			String str = "No Customer Exists with given Customer id " + cust.getCid();
 			throw new NoSuchCustomerExistsException(str);
 		}
 	}

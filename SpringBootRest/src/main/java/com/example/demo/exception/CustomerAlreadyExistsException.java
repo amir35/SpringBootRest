@@ -6,6 +6,8 @@ package com.example.demo.exception;
 // that already exists
 public class CustomerAlreadyExistsException extends RuntimeException {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private String message;
 
 	public CustomerAlreadyExistsException(String message) {
