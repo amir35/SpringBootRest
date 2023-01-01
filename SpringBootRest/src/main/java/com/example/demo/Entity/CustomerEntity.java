@@ -32,13 +32,13 @@ public class CustomerEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CustomerEntity(int cid, String cname, String cjob, String gender, String cust_aadhar) {
+	public CustomerEntity(int cid, String cname, String cjob, String gender, String custaadhar) {
 		super();
 		this.cid = cid;
 		this.cname = cname;
 		this.cjob = cjob;
 		this.gender = gender;
-		this.custaadhar = cust_aadhar;
+		this.custaadhar = custaadhar;
 	}
 	public int getCid() {
 		return cid;
@@ -66,17 +66,19 @@ public class CustomerEntity {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getCust_aadhar() {
+	public String getCustaadhar() {
 		return custaadhar;
 	}
-	public void setCust_aadhar(String cust_aadhar) {
-		this.custaadhar = cust_aadhar;
+	public void setCustaadhar(String custaadhar) {
+		this.custaadhar = custaadhar;
 	}
 	@Override
 	public String toString() {
 		return "CustomerEntity [cid=" + cid + ", cname=" + cname + ", cjob=" + cjob + ", gender=" + gender
-				+ ", cust_aadhar=" + custaadhar + "]";
+				+ ", custaadhar=" + custaadhar + "]";
 	}
+	
+	
 	
 	
 	

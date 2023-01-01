@@ -55,11 +55,12 @@ public class SpringRestController {
 	}
 
 	// Method to add new customer details to database.Throws
-	// CustomerAlreadyExistsException when customer detail
-	// already exist
+	// CustomerAlreadyExistsException when customer detail already exist
 	@PostMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin
 	public String postCustomer(@RequestBody CustomerEntity cust) {
+		
+		System.out.println("Coming from FrontEnd: "+ cust.getCustaadhar());
 		
 		return custServ.postCustomer(cust);
 	}

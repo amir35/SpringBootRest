@@ -49,7 +49,9 @@ public class CustomerService {
 		
 		//CustomerEntity existingCustomer = custRepo.findByCustaadharAndCname(cust.getCust_aadhar(), cust.getCname());
 		
-		CustomerEntity existingCustomer = custRepo.findByCustaadhar(cust.getCust_aadhar());
+		CustomerEntity existingCustomer = custRepo.findByCustaadhar(cust.getCustaadhar());
+		
+		System.out.println(existingCustomer);
 		
 		
 		if (existingCustomer == null) {
@@ -58,7 +60,7 @@ public class CustomerService {
         }
         else
            // throw new CustomerAlreadyExistsException("Customer already exixts!!");
-        	return "Not found";
+        	return "Not Added";
     }
 		
 
